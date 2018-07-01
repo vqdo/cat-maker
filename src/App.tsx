@@ -1,24 +1,58 @@
 import * as React from 'react';
-import './App.css';
+import './App.scss';
 import CatStats from './components/CatStats';
+import { StoreState } from '@store/index';
+import { CatsAction, addCat, Cat } from '@store/cat';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
-import logo from './logo.svg';
+type OnAddCat = ({name: string}) => any;
 
-class App extends React.Component {
+export interface CatProps {
+  name: string;
+  hunger: number;
+};
+
+export interface CatListProps {
+  cats: CatProps[];
+  onAddCat: OnAddCat,
+};
+
+function mapStateToProps(state: StoreState) {
+  return state;
+};
+
+function mapDispatchToProps(dispatch: Dispatch<CatsAction>) {
+  return {
+    onAddCat: ({name}) => dispatch(addCat(name)),
+  };
+};
+
+class App extends React.Component<CatListProps, any> {
+  constructor(props: CatListProps){
+    super(props);
+  }
+
+  public onSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    this.props.onAddCat({name: data.get('name')});
+  }
+
   public render() {
+    const { onAddCat, cats } = this.props;
     return (
       <div className="App">
-        <CatStats name="Romy" hunger={5} />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <input type="text" name="name" placeholder="Your cat name..." />
+          <input type="submit" value="Add Cat" />
+        </form>
+        {cats.map((cat: CatProps, i) => (
+          <CatStats key={i} {...cat} />
+        ))}
       </div>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

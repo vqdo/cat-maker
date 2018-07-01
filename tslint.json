@@ -9,5 +9,6 @@
       "config/**/*.js",
       "node_modules/**/*.ts"
     ]
-  }
+  },
+  "defaultSeverity": "warning",
 }
