@@ -1,20 +1,16 @@
-import {
-  ADD_CAT,
-  REMOVE_CAT,
-  AddCat,
-  RemoveCat,
-  CatsAction } from './cat.action.models';
+import * as CatActions from './cat.action.models';
+import { CatAppearance } from '../index';
 
-export function addCat(name: string, hunger: number = 0): AddCat {
+export function addCat(name: string, appearance: CatAppearance): CatActions.AddCat {
   return {
-    type: ADD_CAT,
-    payload: { name, hunger },
+    type: CatActions.ADD_CAT,
+    payload: { name, appearance },
   };
 }
 
-export function removeCat(name: string): RemoveCat {
+export function removeCat(id: string): CatActions.RemoveCat {
   return {
-    type: REMOVE_CAT,
-    payload: { name },
+    type: CatActions.REMOVE_CAT,
+    payload: { id },
   };
 }

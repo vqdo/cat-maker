@@ -39,13 +39,19 @@ module.exports = {
   aliases: {
     '@styles': path.resolve(paths.appSrc, 'styles'),
   },
-  commonLoaders: [{
-    test: /\.scss$/,
-    use: [
-      ...cssLoaders,
-      {
-        loader: 'sass-loader',
-      },
-    ],
-  }],
+  commonLoaders: [
+    {
+      test: /\.scss$/,
+      use: [
+        ...cssLoaders,
+        {
+          loader: 'sass-loader',
+        },
+      ]
+    },
+    {
+      test: /\.svg$/,
+      loader: 'svg-inline-loader',
+    },
+  ],
 };

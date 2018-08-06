@@ -1,0 +1,10 @@
+.cat-stats {
+  display: flex;
+  flex-flow: nowrap;
+  padding: 1em;
+  .stats-table {
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+}

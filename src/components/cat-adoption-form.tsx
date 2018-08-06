@@ -1,7 +1,5 @@
 import * as React from 'react';
-import './App.scss';
-import CatStats from './components/cat-stats';
-import CatAdoptionForm from './components/cat-adoption-form';
+import CatStats from './cat-stats';
 import { StoreState } from '@store/index';
 import { CatsAction, addCat, Cat, CatAppearance, makeRandomCat } from '@store/cat';
 import { Dispatch } from 'redux';
@@ -9,13 +7,13 @@ import { connect } from 'react-redux';
 
 type OnAddCat = (name: string, cat: CatAppearance) => any;
 
-interface CatListProps {
-  cats: Cat[];
+interface CatAdoptionFormProps {
   onAddCat: OnAddCat,
 };
 
+
 function mapStateToProps(state: StoreState) {
-  return state;
+  return {};
 };
 
 function mapDispatchToProps(dispatch: Dispatch<CatsAction>) {
@@ -24,8 +22,8 @@ function mapDispatchToProps(dispatch: Dispatch<CatsAction>) {
   };
 };
 
-class App extends React.Component<CatListProps, any> {
-  constructor(props: CatListProps){
+class CreateACatForm extends React.Component<CatAdoptionFormProps, any> {
+  constructor(props: any){
     super(props);
   }
 
@@ -37,18 +35,15 @@ class App extends React.Component<CatListProps, any> {
   }
 
   public render() {
-    const { onAddCat, cats } = this.props;
     return (
       <div className="app">
-        <CatAdoptionForm />
-        <div className="cat-crates">
-          {cats.map((cat: Cat, i) => (
-            <CatStats key={i} {...cat} />
-          ))}
-        </div>
+        <form onSubmit={this.onSubmit.bind(this)} className="adopt-a-cat-form">
+          <input type="text" name="name" placeholder="Your cat name..." />
+          <input type="submit" value="Add Cat" />
+        </form>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateACatForm);

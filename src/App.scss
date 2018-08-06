@@ -1,28 +1,19 @@
-.App {
+@import './styles/normalize';
+
+.app {
+  padding: 1em;
+}
+
+.adopt-a-cat-form {
   text-align: center;
+  font-size: 2em;
+  input {
+    padding: 0.3em;
+  }
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.cat-crates {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1em 0;
 }

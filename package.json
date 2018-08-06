@@ -11,6 +11,7 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "resolve": "1.6.0",
+    "tinycolor2": "^1.4.1",
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
@@ -48,6 +49,7 @@
     "sass-loader": "^7.0.1",
     "source-map-loader": "^0.2.1",
     "style-loader": "0.19.0",
+    "svg-inline-loader": "^0.8.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "ts-jest": "22.0.1",
     "ts-loader": "^2.3.7",

@@ -1,4 +1,13 @@
+export interface CatAppearance {
+  eyeIris: string | null;
+  eyePupil: string | null;
+  furBase: string;
+  innerEar: string;
+};
+
 export interface Cat {
-  name: string,
-  hunger: number,
-}
+  id: string;
+  name: string;
+  fullness: number;
+  appearance: CatAppearance;
+};

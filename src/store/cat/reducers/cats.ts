@@ -7,15 +7,18 @@ export function cats(state: StoreState, action: CatsAction): StoreState {
       return {
         ...state,
         cats: [ ...state.cats, {
-          name: 'Unnamed Cat',
-          hunger: 0,
+          id: Math.random().toString(36).substr(2, 5),
+          fullness: 0,
           ...action.payload,
+          appearance: {
+            ...action.payload.appearance,
+          },
         }],
       };
     case REMOVE_CAT:
       return {
         ...state,
-        cats: state.cats.filter(cat => cat.name !== action.payload.name),
+        cats: state.cats.filter(cat => cat.id !== action.payload.id),
       };
   }
   return state;
